@@ -1,0 +1,21 @@
+<h1>Edit assigned</h1>
+
+<%= form_for(@assigned_project) do |f| %>
+  <%= render 'shared/error_assigned', object: f.object %>
+
+  <div class="field">
+  	<%= f.label :"Select User" %><br />
+  	<%= select_tag "assigned_project[user_id]", options_from_collection_for_select(@users, "id", "name", @assigned_project.user_id)%>
+  </div>
+  <div class="field">
+  	<%= f.label :"Select Project" %><br />
+  	<%= select_tag "assigned_project[project_id]", options_from_collection_for_select(@projects, "id", "name", @assigned_project.project_id)%>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div> 
+<% end %>
+
+
+<%= link_to 'Show', @assigned_project %> |
+<%= link_to 'Back', assigned_projects_path %>

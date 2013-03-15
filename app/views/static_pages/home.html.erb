@@ -1,13 +1,27 @@
 <div class="center hero-unit">
   <h1>Welcome to the Project Manager</h1>
 
-  <h2>
-    This is the home page for the
-    <a href="http://railstutorial.org/">Ruby on Rails Tutorial</a>
-    sample application.
-  </h2>
+  <% if !signed_in? %>
+  	<h2>
+    Home page for Project Manager
+  	</h2>
+    <%= link_to "Sign up to become our member!", signup_path, class: "btn btn-large btn-primary" %>
+  <% else %>
+    <div align="center">
+      <% if current_user.admin? %>
+      	
+          <%= link_to "Manage Project", projects_path, class: "btn btn-large btn-primary" %><br/> <br/>
+          <%= link_to "Assign User to Project", assigned_projects_path, class: "btn btn-large btn-primary" %><br/> <br/>
+          <%= link_to "Manage User", users_path, class: "btn btn-large btn-primary" %><br/> <br/>
+          <%= link_to "Manage Plan Of User", '#', class: "btn btn-large btn-primary" %> <br/> <br/>
+          <%= link_to "Manage Schedule", '#', class: "btn btn-large btn-primary" %><br/> <br/>
+          
+         
+      <% else %>
 
-  <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
+          <%= link_to "Schedule", '#', class: "btn btn-large btn-primary" %><br/> <br/>
+          <%= link_to "Man-Days", '#', class: "btn btn-large btn-primary" %><br/> <br/>
+      <% end %>
+    </div>
+  <% end %>
 </div>
-
-<%= link_to image_tag("rails.png", alt: "Rails"), 'http://rubyonrails.org/' %>

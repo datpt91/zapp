@@ -1,0 +1,19 @@
+<h1>Create assigned</h1>
+
+<%= form_for(@assigned_project) do |f| %>
+  <%= render 'shared/error_assigned', object: f.object %>
+
+  <div class="field">
+  	<%= f.label :"Select an user" %><br />
+  	<%= select_tag "assigned_project[user_id]", options_from_collection_for_select(@users, "id", "name", @assigned_project.user_id) %>
+  </div>
+  <div class="field">
+  	<%= f.label :"Select a project" %><br />
+  	<%= select_tag "assigned_project[project_id]", options_from_collection_for_select(@projects, "id", "name", @assigned_project.project_id)%>
+  </div>
+  <%= f.submit "Create", class: "btn btn-large btn-primary" %>
+
+  <%= link_to 'Cancel', assigned_projects_path %>
+<% end %>
+
+
